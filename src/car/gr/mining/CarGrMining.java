@@ -124,8 +124,7 @@ public class CarGrMining {
         car.owners=func.getCarOwners(doc);
         car.price=func.getCarPrice(doc);
         car.seller=func.getCarSeller(doc);
-        car.specialties=func.getCarSpecialties(doc);
-        car.transmission=func.getCarTransmission(doc);
+        car.specialties=func.getCarSpecialties(doc);       
         //car.url=s;
         car.views=func.getCarViews(doc);
         
