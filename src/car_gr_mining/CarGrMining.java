@@ -115,7 +115,7 @@ public class CarGrMining {
         car.title=func.getCarTitle(doc);
         car.cc=func.getCarCc(doc);
         car.date=func.getCarDate(doc);
-        car.description=func.getCarDescription(doc);
+        //car.description=func.getCarDescription(doc);
         car.hp=func.getCarHp(doc);
         car.id=func.getCarId(doc);
         car.kteo=func.getCarKteo(doc);
