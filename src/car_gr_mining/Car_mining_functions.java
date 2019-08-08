@@ -60,8 +60,8 @@ public class Car_mining_functions {
     
     public String getCarDescription(Document doc) {
         //todo elegxos an yparxei perigrafi
-        //String desc=doc.getElementById("desc_message").text();
-        //System.out.println(desc);
+        String desc=doc.getElementById("desc_message").text();
+        System.out.println(desc);
         
         return null;
     }
