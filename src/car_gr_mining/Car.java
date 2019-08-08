@@ -12,4 +12,6 @@ package car_gr_mining;
 public class Car {
     String url,id,title,date,description,seller,specialties,kteo,last_change;
     int price,milage,cc,owners,views,hp;
+    
+    leyteris
 }
