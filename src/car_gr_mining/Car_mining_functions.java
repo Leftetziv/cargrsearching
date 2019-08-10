@@ -24,8 +24,7 @@ public class Car_mining_functions {
         
         for (Element e:elements) {
             if (e.text().equals("Νούμερο αγγελίας:")) {
-                //System.out.println(e.parent().child(1).text());
-                System.out.println(e.parent().child(1).text());
+                System.out.println("Νούμερο αγγελίας:"+e.parent().child(1).text());
                 return e.parent().child(1).text();
             }
             //System.out.println(e.text());
@@ -39,7 +38,7 @@ public class Car_mining_functions {
         
         for (Element e:elements) {           
             if (e.text().equals("Μάρκα/Μοντέλο:")) {   
-                System.out.println(e.parent().child(1).text());
+                System.out.println("Μάρκα/Μοντέλο:"+e.parent().child(1).text());
                 return e.parent().child(1).text();
             }           
         } 
@@ -50,7 +49,7 @@ public class Car_mining_functions {
         
         for (Element e:elements) {           
             if (e.text().matches("Χρονολογία")) {   
-                System.out.println(e.parent().child(1).text());
+                System.out.println("Χρονολογία:"+e.parent().child(1).text());
                 return e.parent().child(1).text();
             }           
         } 
@@ -59,32 +58,52 @@ public class Car_mining_functions {
     }
     
     public String getCarDescription(Document doc) {
-        //todo elegxos an yparxei perigrafi
-        String desc=doc.getElementById("desc_message").text();
-        System.out.println(desc);
-        
+        Elements ele = doc.getAllElements();
+        Boolean desc_exists = ele.hasClass("description_message translate");
+        if (desc_exists) {
+            String desc=doc.getElementById("desc_message").text();
+            System.out.println("Περιγραφή:"+desc);
+            return desc;
+        }
+
         return null;
     }
     public String getCarSeller(Document doc) {
-        Elements e = doc.getElementsByClass("p_l");
-        String seller=e.text();
-        System.out.println(seller);
-               
+        Elements e = doc.getElementsByTag("address");
+        String seller=e.first().text();
+
+        try {
+            Elements ele = doc.getElementById("--userinfo").getAllElements();
+            if (ele != null) {
+                String phone=doc.getElementsByClass("modal-telephone").first().html();
+                System.out.println("idiotis");
+                seller=seller+" "+phone;
+            }
+        } catch (NullPointerException ex) {
+            System.out.println("emporos");
+        }
+
+        System.out.println("Seller:"+seller);
         return seller;
     }
     public String getCarSpecialties(Document doc) {
-        Elements e = doc.getElementsByClass("extras-container");
-        String extras = e.text();
-        System.out.println(extras);
-        
-        return extras;
+        Elements ele = doc.getAllElements();
+        Boolean desc_exists = ele.hasClass("extras-container");
+        if (desc_exists) {
+            Elements extra = doc.getElementsByClass("extras-container");
+            String extras = extra.text();
+            System.out.println("Extras:"+extras);
+            return extras;
+        }
+
+        return null;
     }
     public String getCarKteo(Document doc) {
         Elements elements=doc.getElementsByClass("half-width-inside");
         
         for (Element e:elements) {           
             if (e.text().equals("Κτεο εως:")) {   
-                System.out.println(e.parent().child(1).text());
+                System.out.println("Κτεο εως:"+e.parent().child(1).text());
                 return e.parent().child(1).text();
             }           
         } 
@@ -103,7 +122,7 @@ public class Car_mining_functions {
                     result+=m.group();                   
                 }
                 //System.out.println(result);
-                System.out.println(Integer.parseInt(result));
+                System.out.println("Τιμή:"+Integer.parseInt(result));
                 return Integer.parseInt(result);
             }           
         }         
@@ -122,7 +141,7 @@ public class Car_mining_functions {
                     result+=m.group();                   
                 }
                 //System.out.println(result);
-                System.out.println(Integer.parseInt(result));
+                System.out.println("Χιλιόμετρα:"+Integer.parseInt(result));
                 return Integer.parseInt(result);
             }           
         }         
@@ -141,7 +160,7 @@ public class Car_mining_functions {
                     result+=m.group();                   
                 }
                 //System.out.println(result);
-                System.out.println(Integer.parseInt(result));
+                System.out.println("Κυβικά:"+Integer.parseInt(result));
                 return Integer.parseInt(result);
             }           
         }   
@@ -160,7 +179,7 @@ public class Car_mining_functions {
                     result+=m.group();                   
                 }
                 //System.out.println(result);
-                System.out.println(Integer.parseInt(result));
+                System.out.println("Προηγούμενοι κάτοχοι:"+Integer.parseInt(result));
                 return Integer.parseInt(result);
             }           
         }   
@@ -206,7 +225,7 @@ public class Car_mining_functions {
         
         for (Element e:elements) {           
             if (e.text().equals("Εμφανίσεις αγγελίας:")) {                  
-                System.out.println(e.parent().child(1).text());
+                System.out.println("Εμφανίσεις αγγελίας:"+e.parent().child(1).text());
                 return Integer.parseInt(e.parent().child(1).text());
             }           
         }   
@@ -225,7 +244,7 @@ public class Car_mining_functions {
                     result+=m.group();                   
                 }
                 //System.out.println(result);
-                System.out.println(Integer.parseInt(result));
+                System.out.println("Ίπποι:"+Integer.parseInt(result));
                 return Integer.parseInt(result);
             }           
         }   

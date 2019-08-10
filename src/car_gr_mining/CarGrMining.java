@@ -9,6 +9,8 @@ package car_gr_mining;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -27,14 +29,18 @@ public class CarGrMining {
     static ArrayList<String> webpages_links = new ArrayList<String>();  //lista me ta links ton selidon
     static ArrayList<String> carpages_links = new ArrayList<String>();  //lista me ta links ton autokiniton
     static ArrayList<Car> cars = new ArrayList<Car>();
-    
+
     public static void main(String[] args) throws MalformedURLException, IOException {
-        String source_firstpage=fetch_page(first_page+"&pg=1");
+        //String source_firstpage=fetch_page(first_page+"&pg=1");
         //System.out.println(source);
-        
-        setWebpages_number(source_firstpage);
-        setWebpages_links();
-        setCarpages_links();
+
+        carpages_links.add("/23508645-mazda-mx-5"); //emporos
+        carpages_links.add("/23513201-mazda-mx-5-nc");  //idiotis xoris perigrafi
+        carpages_links.add("/22562786-mazda-mx-5-mk2-5"); //idiotis me 2 tilephona
+
+        //setWebpages_number(source_firstpage);
+        //setWebpages_links();
+        //setCarpages_links();
         setCars();
         /*        
         for (String s:webpages_links) {
@@ -48,7 +54,8 @@ public class CarGrMining {
     }
     
     public static String fetch_page(String webpage) throws MalformedURLException, IOException {      
-        String source = Jsoup.connect(webpage).get().html();      
+        String source = Jsoup.connect(webpage).get().html();
+        System.out.println("megethos keimenou:"+source.length());
         return source;
     }
     
@@ -115,7 +122,7 @@ public class CarGrMining {
         car.title=func.getCarTitle(doc);
         car.cc=func.getCarCc(doc);
         car.date=func.getCarDate(doc);
-        //car.description=func.getCarDescription(doc);
+        car.description=func.getCarDescription(doc);
         car.hp=func.getCarHp(doc);
         car.id=func.getCarId(doc);
         car.kteo=func.getCarKteo(doc);
@@ -127,6 +134,6 @@ public class CarGrMining {
         car.specialties=func.getCarSpecialties(doc);       
         //car.url=s;
         car.views=func.getCarViews(doc);
-        
+
     }
 }
