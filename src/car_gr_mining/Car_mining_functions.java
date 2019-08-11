@@ -73,7 +73,7 @@ public class Car_mining_functions {
         String seller=e.first().text();
 
         try {
-            Elements ele = doc.getElementById("--userinfo").getAllElements();
+            Elements ele = doc.getElementById("--userinfo").getAllElements();   //todo polapla tilephona
             if (ele != null) {
                 //System.out.println("idiotis");
                 ele = doc.getElementsByClass("modal-telephone").select("img");
