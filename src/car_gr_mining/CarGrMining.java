@@ -117,7 +117,8 @@ public class CarGrMining {
         }*/
         Car car=new Car();
         Car_mining_functions func=new Car_mining_functions();
-        String source=fetch_page("https://www.car.gr"+carpages_links.get(0));
+        String s=carpages_links.get(0);
+        String source=fetch_page("https://www.car.gr"+s);
         Document doc = Jsoup.parse(source);
         car.title=func.getCarTitle(doc);
         car.cc=func.getCarCc(doc);
@@ -132,8 +133,8 @@ public class CarGrMining {
         car.price=func.getCarPrice(doc);
         car.seller=func.getCarSeller(doc);
         car.specialties=func.getCarSpecialties(doc);       
-        //car.url=s;
+        car.url=s;
         car.views=func.getCarViews(doc);
-
+        //car.print_car();
     }
 }
